@@ -19,7 +19,7 @@ INSERT INTO benchmarking_data (id, date, bin, metric)
       random() * 100  AS metric
     FROM (
       SELECT uuid_generate_v4() AS id
-        FROM generate_series(1, 100) AS epochs(bin)
+        FROM generate_series(1, 1000) AS epochs(bin)
     ) AS ids(id)
       CROSS JOIN generate_series('20180101'::DATE, '20181231'::DATE, '1 day') AS dates(date)
       CROSS JOIN generate_series(0, 287) AS epochs(bin);

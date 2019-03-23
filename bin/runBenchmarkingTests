@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+set -a
+
+pushd "$( dirname "${BASH_SOURCE[0]}" )/../src" >/dev/null
+
+echo 'filename,exec_time_sec'
+find . -executable -type f |
+  sort |
+  while read -r f; do
+    # START=$( date +%s%N | cut -b1-13 ) # millisec
+    START=$( date +%s )
+    "$f" >/dev/null
+    # END=$( date +%s%N | cut -b1-13 ) # millisec
+    END=$( date +%s )
+    DIFF=$(( END - START ))
+    echo "$( basename "$f" ),$DIFF"
+  done
+
+popd >/dev/null
