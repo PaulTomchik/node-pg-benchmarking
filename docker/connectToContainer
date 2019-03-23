@@ -1,0 +1,1 @@
+docker exec -it nodepg_benchmarking bash
