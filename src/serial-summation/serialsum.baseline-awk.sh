@@ -5,10 +5,10 @@ set -a
 
 pushd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null
 
-. ../.env
+. ../../.env
 
-GET_IDS_SQL="$( node -e 'console.log(require("./testQueries").getIds)' | sed 's/;//g' )"
-GET_DATA_SQL="$( node -e 'console.log(require("./testQueries").getDataForId)' | sed 's/;//g' )"
+GET_IDS_SQL="$( node -e 'console.log(require("../testQueries").getIds)' | sed 's/;//g' )"
+GET_DATA_SQL="$( node -e 'console.log(require("../testQueries").getDataForId)' | sed 's/;//g' )"
 
 psql -c "COPY ($GET_IDS_SQL) TO STDOUT;" |
   while read -r id; do

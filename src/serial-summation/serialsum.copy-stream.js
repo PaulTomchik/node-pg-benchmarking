@@ -2,18 +2,14 @@
 
 /* eslint no-await-in-loop: 0 */
 
-// const TEST_NAME = 'pg-copy-streams';
-
 const copyTo = require('pg-copy-streams').to;
 const split2 = require('split2');
 
-const DBService = require('./DBService');
+const { client: DBService } = require('../services/DBService');
 
-const { getIds, getDataForId } = require('./testQueries');
+const { getIds, getDataForId } = require('../testQueries');
 
 let sum = 0;
-
-// console.time(TEST_NAME);
 
 const doit = id => {
   return new Promise(resolve => {
@@ -37,7 +33,6 @@ const doit = id => {
 
     await doit(id);
   }
-  // console.timeEnd(TEST_NAME);
   console.log(sum);
   DBService.end();
 })();

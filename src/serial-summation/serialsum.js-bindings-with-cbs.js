@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
-// const TEST_NAME = 'js-bindings with callbacks';
+const { client: DBService, end } = require('../services/DBService');
 
-const DBService = require('./DBService');
-
-const { getIds, getDataForId } = require('./testQueries');
+const { getIds, getDataForId } = require('../testQueries');
 
 let sum = 0;
-
-// console.time(TEST_NAME);
 
 DBService.query(getIds, (err, { rows }) =>
   rows.reduce(
@@ -26,9 +22,8 @@ DBService.query(getIds, (err, { rows }) =>
         );
     },
     () => {
-      // console.timeEnd(TEST_NAME);
       console.log(sum);
-      DBService.end();
+      end();
     }
   )()
 );

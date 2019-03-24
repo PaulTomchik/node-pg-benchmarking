@@ -2,17 +2,13 @@
 
 /* eslint no-await-in-loop: 0 */
 
-// const TEST_NAME = 'js-bindings with promises';
+const { client: DBService, end } = require('../services/DBService');
 
-const DBService = require('./DBService');
-
-const { getIds, getDataForId } = require('./testQueries');
+const { getIds, getDataForId } = require('../testQueries');
 
 let sum = 0;
 
 const addToSum = ({ metric }) => (sum += metric);
-
-// console.time(TEST_NAME);
 
 (async () => {
   const { rows } = await DBService.query(getIds);
@@ -27,7 +23,6 @@ const addToSum = ({ metric }) => (sum += metric);
 
     d.forEach(addToSum);
   }
-  // console.timeEnd(TEST_NAME);
   console.log(sum);
-  DBService.end();
+  end();
 })();

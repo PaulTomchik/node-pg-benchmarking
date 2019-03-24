@@ -16,6 +16,7 @@ find . -executable -type f |
     END=$( date +%s )
     DIFF=$(( END - START ))
     echo "$( basename "$f" ),$DIFF"
-  done
+  done |
+  sort -t, -k2 -n
 
 popd >/dev/null
