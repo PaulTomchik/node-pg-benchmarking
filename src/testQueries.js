@@ -1,8 +1,4 @@
 module.exports = {
-  getIds: 'SELECT DISTINCT id FROM benchmarking_data LIMIT 1000',
-  getDataForId: `
-    SELECT id, bin, metric
-      FROM benchmarking_data
-      WHERE (id = $1)
-  `
+  getIds: process.env.GET_IDS_SQL,
+  getDataForId: process.env.GET_DATA_SQL.replace(/'__ID__'/, '$1')
 };

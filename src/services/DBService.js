@@ -1,8 +1,6 @@
-const { join } = require('path');
-
 const { Client, Pool } = require('pg');
 
-require('dotenv').config({ path: join(__dirname, '../../.env') });
+require('./loadEnvFile');
 
 const client = new Client();
 const pool = new Pool();

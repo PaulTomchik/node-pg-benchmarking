@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^7.0.0",
+    "dotenv-expand": "^5.1.0",
     "pg": "^7.9.0",
     "pg-copy-streams": "^2.2.0",
     "pg-native": "^3.0.0",

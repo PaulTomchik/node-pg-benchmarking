@@ -7,17 +7,22 @@ pushd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null
 
 . ../../.env
 
-GET_IDS_SQL="$( node -e 'console.log(require("../testQueries").getIds)' | sed 's/;//g' )"
-
 SQL="
-  SELECT SUM(metric)
+WITH cte_sums AS (
+  SELECT
+      id,
+      SUM(metric) AS s
     FROM benchmarking_data
     WHERE (
       id IN ($GET_IDS_SQL)
     )
+    GROUP BY id
+)
+  SELECT SUM(s)
+    FROM cte_sums
   ;
 "
 
-psql -c "$SQL" >/dev/null
+psql -tA -c "$SQL"
 
 popd >/dev/null
