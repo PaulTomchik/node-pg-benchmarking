@@ -4,11 +4,11 @@ Benchmarking various node-postgres options for processing large datasets.
 
 ## Dataset
 
-See (createBenchmarkingDatabase)[./bin/sql/createBenchmarkingDatabase.sql]
+See [createBenchmarkingDatabase](./bin/sql/createBenchmarkingDatabase.sql)
 
 ## Benchmarking scripts
 
-See (src/)[./src/]
+See [src/](./src/)
 
 ## Results
 
